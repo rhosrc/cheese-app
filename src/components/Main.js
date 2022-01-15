@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { useEffect, useState } from 'react'; // NAMED IMPORTS
+import { Route, Switch, Redirect } from 'react-router-dom';
 import Index from '../pages/Index';
 import Show from '../pages/Show';
 
@@ -54,15 +54,18 @@ useEffect(() => getCheeses(), [])
         <main>
             <Switch>
                 <Route exact path="/">
-                    <Index cheeses={cheeses} createCheese={createCheese} />
+                    <Index user={props.user} cheeses={cheeses} createCheese={createCheese} />
                 </Route>
-                <Route path="/cheeses/:id" render={(rp) => (
+                <Route path="/cheeses/:id" render={(rc) => (
+                    props.user ?
                 <Show 
                     cheeses={cheeses} 
                     updateCheese={updateCheese} 
                     deleteCheese={deleteCheese}
-                    {...rp} 
+                    {...rc} 
                 />
+                :
+                <Redirect to='/' />
                 )} 
                 />
             </Switch>

@@ -14,12 +14,14 @@ countryOfOrigin:''
 // handleChange function for changing formData in text box
 
 const handleChange = function (event) {
+    if(!props.user) return; // no user, no typing allowed
     setNewForm({...newForm, [event.target.name]: event.target.value}) // don't overwrite the object structure and add a new prop
 }
 
 // handleSubmit function to use cheeses state setter passed in as prop from Component component
 
 const handleSubmit = function (event) {
+    if (!props.user) return;
     event.preventDefault();
     props.createCheese(newForm)//add item to database
     setNewForm({ // once state of cheeses is changed, return content of text boxes to empty
@@ -50,7 +52,7 @@ const handleSubmit = function (event) {
     
     
     // Finally, we render the component
-
+ //and disable functionality depending on whether there is a user prop to pass in
     return (
         <section>
             <form onSubmit={handleSubmit}>
@@ -75,7 +77,8 @@ const handleSubmit = function (event) {
                 placeholder="Country of Origin"
                 onChange={handleChange}
             />
-            <input type="submit" value="Add Cheese"/>
+            <input disabled={!props.user} type="submit" value="Add Cheese"/>
+           
         </form>
         {props.cheeses ? loaded() : loading()} 
         </section>

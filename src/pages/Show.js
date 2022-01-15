@@ -27,6 +27,8 @@ const handleDelete = function (event) {
     props.history.push('/cheeses');
 }
 
+
+
     return (
         <div className="cheese">
 <h1>{cheese.name}</h1>
