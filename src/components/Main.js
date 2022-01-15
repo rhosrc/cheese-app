@@ -53,7 +53,7 @@ useEffect(() => getCheeses(), [])
     return (
         <main>
             <Switch>
-                <Route exact path="/cheeses">
+                <Route exact path="/">
                     <Index cheeses={cheeses} createCheese={createCheese} />
                 </Route>
                 <Route path="/cheeses/:id" render={(rp) => (
