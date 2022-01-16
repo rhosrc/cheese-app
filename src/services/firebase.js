@@ -17,9 +17,9 @@ const firebaseConfig = {
 
   function login () {
     auth.signInWithPopup(provider);
-    provider.setCustomParameters({
-        prompt: "select_account",
-    });
+    // provider.setCustomParameters({
+    //     prompt: "select_account",
+    // });
      // proceed to send multiple service providers
     }
 
