@@ -16,11 +16,11 @@ const firebaseConfig = {
   const provider = new firebase.auth.GoogleAuthProvider();
 
   function login () {
-    return auth.signInWithPopup(provider); // proceed to send multiple service providers
     provider.setCustomParameters({
         prompt: "select_account",
-    })
-  }
+    });
+    auth.signInWithPopup(provider); // proceed to send multiple service providers
+    }
 
 // w/r/t line 19, you can make provider an object with keys, and reference them in your various functions.
 
