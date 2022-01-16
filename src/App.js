@@ -10,17 +10,22 @@ function App() {
   const [ user, setUser ] = useState(null); // 'null' instead of brackets b/c state(user/who) is only an object who's properties we're going to use.
 
   // useEffect hook is where we'll get info about user, or whether there is one
+  //this method calls a callback function when something changes in authentication
+      // const token = await user.getIdToken();
+      // console.log(token);
   useEffect(() => {
+    auth.onAuthStateChanged(user =>  
+      setUser(user)); 
+  }, []);
+
+  // useEffect(() => {
     // Observer code below triggers login/logout. user refers to user that Google gives us.
-    auth.onAuthStateChanged(async user => { //this method calls a callback function when something changes in authentication
-      const token = await user.getIdToken();
-      console.log(token);
-      setUser(user); 
-  }, []) // empty dependency array. I only want this effect ONCE, at mounting.
+ 
+ // empty dependency array. I only want this effect ONCE, at mounting.
   //creating a prop for the header and main
   return (
     <div className="App">
-     <Header user={user}/> 
+     <Header user={user} /> 
      <Main user={user} />
     </div>
   );
